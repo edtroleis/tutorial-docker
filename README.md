@@ -266,7 +266,7 @@ docker-compose up -d
 # Down the containers up with docker-compose.yml
 docker-compose down
 
-# Cheking logs
+# Checking logs
 docker-compose logs
 ```
 
