@@ -51,12 +51,12 @@ docker-compose version
 
 # Docker commands
 
-## Showing running containers
+### Showing running containers
 ```
 docker ps
 ```
 
-## Showing all containers
+### Showing all containers
 ```
 docker ps -a
 ```
@@ -218,7 +218,7 @@ ADD ./html/index.html /root/
 docker build -t edtroleis/php7 .
 ```
 
-# Docker compose
+# docker-compose
 
 
 ## Creating a docker-compose.yml
@@ -260,11 +260,14 @@ mkdir html
 
 ## Execute docker-compose.yml
 ```
-# start docker-compose and detach from terminal
+# Start docker-compose and detach from terminal
 docker-compose up -d
 
-# down the containers up with docker-compose.yml
+# Down the containers up with docker-compose.yml
 docker-compose down
+
+# Cheking logs
+docker-compose logs
 ```
 
 # Pushing docker images in Docker registry
