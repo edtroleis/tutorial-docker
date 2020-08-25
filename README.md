@@ -5,7 +5,7 @@ Container is an isolated environment that doesn't need an hypervisor.
 Docker is a software necessary to your application may run into a container. It shares SO libraries with the containers.
 ```
 
-# Installing docker-ce
+# Installing docker-ce on Ubuntu 19.10
 ```
 # Removing Docker old versions
 sudo apt-get remove docker docker-engine docker.io
@@ -37,7 +37,7 @@ sudo systemctl restart docker
 ```
 
 
-# Installing docker-compose
+# Installing docker-compose on Ubuntu 19.10
 ```
 # Downloading docker-compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
