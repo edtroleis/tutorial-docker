@@ -237,7 +237,6 @@ services:
       - "./.data/db:/var/lib/mysql"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mydb
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
