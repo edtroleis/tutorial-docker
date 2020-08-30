@@ -173,6 +173,17 @@ docker stop/rm $(docker ps -aq)
 docker run -d --name=dbserver -e "MYSQL_ROOT_PASSWORD=root" -e "MYSQL_DATABASE=mypassword" mysql:5.7
 ```
 
+## Checking docker system
+```
+docker system <df|events|info|prune>
+
+Commands:
+  df          Show docker disk usage
+  events      Get real time events from the server
+  info        Display system-wide information
+  prune       Remove unused data
+```
+
 ## --link dbserver:mysql: link the container wordpress with the container dbserver and the internal name will be mysql
 ```
 docker run -d --name=wordpress --link dbserver:mysql -p 8085:80 wordpress
@@ -205,7 +216,6 @@ vim Dockerfile
 
 ```
 FROM php:7.0-apache
-MAINTAINER edtroleis@outlook.com
 
 RUN apt-get update && apt-get install -y vim
 RUN docker-php-ext-install pdo pdo_mysql
@@ -223,13 +233,12 @@ docker build -t edtroleis/php7 .
 
 # docker-compose
 
-
 ## Creating a docker-compose.yml
 Create containers based on the commands presented in the docker-compose.yml. docker-compose.yml is an automatizer
 
 vim docker-compose.yml
 ```
-version: '2'
+version: "3.0"
 services:
   db:
     image: mysql:5.7
@@ -237,9 +246,9 @@ services:
       - "./.data/db:/var/lib/mysql"
     restart: always
     environment:
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
    
   web:
     volumes:
