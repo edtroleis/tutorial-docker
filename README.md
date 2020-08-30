@@ -1,37 +1,37 @@
-# Installing docker-ce and docker-componse on Ubuntu 64 bits
+# Install docker-ce and docker-componse on Ubuntu 64 bits
 ```
 Container is an isolated environment that doesn't need an hypervisor.
 
 Docker is a software necessary to your application may run into a container. It shares SO libraries with the containers.
 ```
 
-# Installing docker-ce on Ubuntu 19.10
+# Install docker-ce on Ubuntu 19.10
 ```
-# Removing Docker old versions
+# Remove Docker old versions
 sudo apt-get remove docker docker-engine docker.io
 
-# Updating package database
+# Update package database
 sudo apt-get update
 
-# Adding Docker oficial repository
+# Add Docker oficial repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-# Adding Docker repository into apt source
+# Add Docker repository into apt source
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
 
-# Updating package database, now you have access to docker packages
+# Update package database, now you have access to docker packages
 sudo apt-get update
 
-# Installing docker-ce
+# Install docker-ce
 sudo apt-get install docker-ce
 
-# Checking docker installation and version
+# Check docker installation and version
 sudo docker version 
 
-# Adding docker command without sudo
+# Add docker command without sudo
 sudo usermod -aG docker $(whoami)
 sudo systemctl restart docker
 
@@ -40,98 +40,98 @@ sudo chmod 666 /var/run/docker.sock
 ```
 
 
-# Installing docker-compose on Ubuntu 19.10
+# Install docker-compose on Ubuntu 19.10
 ```
-# Downloading docker-compose
+# Download docker-compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-# Setting permission
+# Set permission
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Checking docker-compose instalation and version
+# Check docker-compose instalation and version
 docker-compose version
 ```
 
 # Docker commands
 
-### Showing running containers
+### Show running containers
 ```
 docker ps
 ```
 
-### Showing all containers
+### Show all containers
 ```
 docker ps -a
 ```
 
-## Running docker image nginx
+## Run docker image nginx
 ```
 docker run nginx
 ```
 
-## Showing docker images
+## Show docker images
 ```
 docker images
 ```
 
-## Removing docker image
+## Remove docker image
 ```
 docker rmi -f {image}
 docker image rm -f {image}
 ```
 
-## Mapping port
+## Mapp port
 ```
 docker run -d -p 8080:80 nginx
 # now you can access the container with port 8080 -> http://localhost:8080/
 ```
 
-## Executing an imagem. After exit from the terminal the container is removed
+## Execute an imagem. After exit from the terminal the container is removed
 ```
 docker run -it --rm nginx bash
 ```
 
-## Executing commands with running container
+## Execute commands with running container
 ```
 docker exec {container_id} ls
 ```
 
-## Executing commands with running container iterativity
+## Execute commands with running container iterativity
 ```
 docker exec -it {container_id|container_name} bash
 ```
 
-## Checking container configuration
+## Check container configuration
 ```
 docker inspect {container}
 ```
 
-## Checking container logs
+## Check container logs
 ```
 docker logs {container_id}
 ```
 
-## Checking image layers
+## Check image layers
 ```
 docker history {image}
 ```
 
-## Creating a new Docker image from a modified Docker image
+## Create a new Docker image from a modified Docker image
 ```
 docker commit {container_id} nginxtroleis:1.0
 ```
 
-## Creating a container and associate a name
+## Create a container and associate a name
 ```
 docker run -d -p 8081:80 --name web02 nginxtroleis:1.0
 ```
 
-## Checking container logs
+## Check container logs
 ```
 docker logs {conainter_id}
 ```
 
-## Starting/Restarting a container
+## Start/Restart a container
 ```
 docker start {container_id}
 docker restart {conainter_id}
@@ -141,7 +141,7 @@ docker restart {conainter_id}
 When you create a volume to a container you can storage data into it and when you stop or remove the data container stored still there.
 
 
-## Running a container with serveral parameters
+## Run a container with serveral parameters
 ```
 run: execute docker image
 -d: detach, release the terminal
@@ -158,12 +158,12 @@ docker run -d --name webserver2 -p 8081:80 -v ~/docker-project/html:/usr/share/n
 docker run -d --name webserver2 -p 8081:80 -v $(pwd)/html:/usr/share/nginx/html nginx
 ```
 
-## Stopping and removing a container
+## Stop and removing a container
 ```
 docker rm webserver2 -f
 ```
 
-## Stopping/removing all containers
+## Stop/remove all containers
 ```
 docker stop/rm $(docker ps -aq)
 ```
@@ -173,7 +173,7 @@ docker stop/rm $(docker ps -aq)
 docker run -d --name=dbserver -e "MYSQL_ROOT_PASSWORD=root" -e "MYSQL_DATABASE=mypassword" mysql:5.7
 ```
 
-## Checking docker system
+## Check docker system
 ```
 docker system <df|events|info|prune>
 
@@ -189,7 +189,7 @@ Commands:
 docker run -d --name=wordpress --link dbserver:mysql -p 8085:80 wordpress
 ```
 
-## Installing and checking container configuration
+## Install and check container configuration
 ```
 docker exec -it wordpress bash
 apt-get update
@@ -209,7 +209,7 @@ bye;
 vim wp-config.php
 ```
 
-## Creating Dockerfile
+## Create Dockerfile
 
 ### Dockerfile, the first later must be capital. Create images, install and execute programs and create files inside the image
 vim Dockerfile
@@ -224,7 +224,7 @@ WORKDIR /root
 ADD ./html/index.html /root/
 ```
 
-### Running Dockerfile
+### Build Dockerfile
 ```
 # user/image-name
 # "." local where the Dockerfile is
@@ -233,7 +233,7 @@ docker build -t edtroleis/php7 .
 
 # docker-compose
 
-## Creating a docker-compose.yml
+## Create a docker-compose.yml
 Create containers based on the commands presented in the docker-compose.yml. docker-compose.yml is an automatizer
 
 vim docker-compose.yml
@@ -263,7 +263,7 @@ services:
     restart: always
 ```
 
-## Creating the directory ./.data/db and ./html
+## Create the directory ./.data/db and ./html
 ```
 mkdir .data/db -p
 mkdir html
@@ -281,8 +281,8 @@ docker-compose down
 docker-compose logs
 ```
 
-# Pushing docker images in Docker registry
-## creating tag
+# Push docker images in Docker registry
+## create tag
 ```
 docker tag {image-id} {registry-account}/{image-name}:{tag}
 docker tag {image-id} edtroleis/debian:1.0
@@ -293,12 +293,12 @@ docker tag {image-id} edtroleis/debian:1.0
 docker login --username edtroleis
 ```
 
-## Pushing image in Docker registry
+## Push image in Docker registry
 ```
 docker push edtroleis/debian:1.0
 ```
 
-## Checking the image in Docker registry
+## Check the image in Docker registry
 ```
 https://hub.docker.com
 ```
